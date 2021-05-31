@@ -5,6 +5,11 @@ import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import './theme/theme1/index.css'
+
+var axios = require('axios')
+axios.defaults.baseURL = 'http://localhost:8081'
+Vue.prototype.$axios = axios
 
 Vue.use(ElementUI)
 
