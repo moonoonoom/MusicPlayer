@@ -1,7 +1,7 @@
 <template>
 
  <div style=" height:100%;width:100% ">
-  <el-col :span="4" style="height:100%;width:100%">
+
     <!-- <h5>自定义颜色</h5> -->
     <el-aside class="aside" style="height:100%;width:100%">
         <!-- 侧边栏导航  -->
@@ -37,8 +37,7 @@
           </el-submenu>
         </el-menu>
       </el-aside>
-  </el-col>
-  
+
  </div>
 
 
@@ -57,11 +56,11 @@
           order: "1",
           children: [
             {
-              path: "/artist/add",
+              path: "/admin/artist/add",
               name: "添加歌手",
             },
             {
-              path: "/artist/list",
+              path: "/admin/artist/list",
               name: "歌手列表",
             }
           ],
