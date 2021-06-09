@@ -1,7 +1,7 @@
 <template>
   <div id="app">
 
-    <router-view/>
+    <router-view style="height:100%" />
   </div>
 </template>
 
@@ -11,7 +11,13 @@ export default {
 }
 </script>
 
+
 <style>
+
+html,body,#app{
+  height: 100%;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

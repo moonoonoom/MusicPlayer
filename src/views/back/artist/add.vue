@@ -4,7 +4,7 @@
         <el-form-item label="姓名">
             <el-input v-model="form.name"  style="width:150px"></el-input>
         </el-form-item>
-        <el-form-item label="性别">
+        <el-form-item label="性别" style="width:350px">
            <el-radio v-model="form.gender" label="1">男</el-radio>
            <el-radio v-model="form.gender" label="0">女</el-radio>
            <el-radio v-model="form.gender" label="2">组合</el-radio>
@@ -69,7 +69,7 @@ import ForeignArea from "../../../components/ForeignArea"
 
 <style scoped>
 .addForm{
-    width:50%;
     text-align:left;
+    margin:30px;
 }
 </style>
