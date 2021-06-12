@@ -2,6 +2,7 @@
   <div style="height:1400px">
     <div style="height:92%">
       <SideBar />
+      
       <Stage />
     </div>
     <div style="height:8%">

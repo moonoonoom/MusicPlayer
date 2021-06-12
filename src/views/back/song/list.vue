@@ -1,5 +1,5 @@
 <template>
-  <div style="height:100%">
+      <div style="height:100%">
     <div class="search">
       <el-input 
       v-model="searchInfo"  
@@ -9,29 +9,23 @@
     </div>
     <div class="table">
         <el-table
-        :data="singerData"
+        :data="songData"
         style="width: 100%;"
         height="100%">
         <el-table-column
           prop="name"
-          label="姓名"
+          label="歌曲名"
           width="120">
         </el-table-column>
         <el-table-column
-          prop="sex"
-          label="性别"
-          width="120">
-        <template slot-scope="{row}"> {{row.sex==1?"男":"女"}} </template>
-        </el-table-column>
-        <el-table-column
-          prop="location"
-          label="地区"
+          prop="singerName"
+          label="歌手名"
           width="120">
         </el-table-column>
         <el-table-column
-          prop="birthdate"
-          label="生日"
-          width="150">
+          prop="playCount"
+          label="播放次数"
+          width="120">
         </el-table-column>
         <el-table-column
           prop="introduction"
@@ -63,15 +57,14 @@
   </div>
 </template>
 
-
-
 <script>
 import { MessageBox, Message } from "element-ui"; 
-export default {
-    name: "ArtistList",
-     data() {
+export default{
+    name:"AdminSongList",
+    data() {
       return {
         singerData:[],
+        songData:[],
         pageNo:1,   
         pageSize:10,
         searchInfo:''
@@ -84,11 +77,11 @@ export default {
     methods:{
       
       getList(){
-        this.$axios
-            .get(`/singer/allSinger/${this.pageNo}/${this.pageSize}`)
+          this.$axios
+            .get(`/song/allSong/${this.pageNo}/${this.pageSize}`)
             .then(response =>{
-              // console.log(response);
-              this.singerData=response.data.data;
+              console.log(response);
+              this.songData=response.data.data;
             })
             .catch(failResponse =>{
             })
@@ -131,6 +124,7 @@ export default {
     }
 }
 </script>
+
 
 <style scoped>
 .search{

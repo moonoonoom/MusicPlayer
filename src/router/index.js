@@ -7,6 +7,8 @@ import Back from '@/views/back/index'
 import ArtistList from '@/views/back/artist/list'
 import Space from '@/views/front/space/index'
 import Main from "@/views/front/space/stage/main"
+import Artist from "@/views/front/components/artist"
+import AdminSongList from "@/views/back/song/list"
 
 Vue.use(Router)
 
@@ -26,6 +28,11 @@ export default new Router({
           path:'/admin/artist/list',
           name: 'ArtistList',
           component: ArtistList
+        },
+        {
+          path:'/admin/song/list',
+          name: 'AdminSongList',
+          component: AdminSongList
         }
       ]
     },
@@ -42,8 +49,13 @@ export default new Router({
       children:[
         {
           path: '/space/main',
-          main: 'Main',
+          name: 'Main',
           component: Main
+        },
+        {
+          path: '/space/artist',
+          name: 'Artist',
+          component: Artist
         }
       ]
     }

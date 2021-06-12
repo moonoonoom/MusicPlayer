@@ -21,7 +21,7 @@
 
 
 export default {
-    name:'SongListRec',
+    name:'SongListPenelLied',
     props:{
         listName:{
             type: String,

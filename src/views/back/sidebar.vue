@@ -14,6 +14,7 @@
           background-color=" #7BA7D5"
           text-color="#fff"
           active-text-color="#ffd04b"
+          :default-active="$route.path"
           style="height:100%"
           >
           <el-submenu :index="' '+item1.order" v-for="item1 in menuData" :key="item1.path">
@@ -66,13 +67,12 @@
           ],
         },
         {
-          path: "postinfomange",
           name: "歌曲管理",
           order: "2",
           children: [
             {
-              path: "postinfomange",
-              name: "岗位信息",
+              path: "/admin/song/list",
+              name: "歌曲列表",
             },
           ],
         },
@@ -89,12 +89,12 @@
         },
         {
           path: "datamangeinfo",
-          name: "数据字典",
+          name: "数据分析",
           order: "4",
           children: [
             {
               path: "datamangeinfo",
-              name: "岗位类型",
+              name: "歌手数据",
             },
           ],
         },
