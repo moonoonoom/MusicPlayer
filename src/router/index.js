@@ -10,7 +10,7 @@ import Main from "@/views/front/space/stage/main"
 import Artist from "@/views/front/components/artist"
 import AdminSongList from "@/views/back/song/list"
 import SingerAnalysis from "@/views/back/analysis/singer"
-import AdminLogin from "@views/back/login"
+import AdminLogin from "@/views/back/login"
 
 Vue.use(Router)
 
@@ -41,12 +41,12 @@ export default new Router({
           name: 'SingerAnalysis',
           component: SingerAnalysis
         },
-        {
-          path:'/admin/login',
-          name:'AdminLogin',
-          component: AdminLogin
-        },
       ]
+    },
+    {
+      path:'/admin/login',
+      name:'AdminLogin',
+      component: AdminLogin
     },
     {
       path: '/',

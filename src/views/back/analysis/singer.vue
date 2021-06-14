@@ -11,18 +11,12 @@ export default{
      data () {
             return {
                 charts: '',
-                opinion:['男','女'],
-                opinionData:[
-                  {value:335, name:'男'},
-                  {value:310, name:'女'},
-                
-                ]
+                opinion:['女','男','组合'],
+                genderData:[]
             }
         },
     mounted(){
-         this.$nextTick(function() {
-                this.drawPie('echarts_box');
-            })
+        this.getGender();
     },
     methods:{
             drawPie(id){
@@ -42,10 +36,27 @@ export default{
                      name:'性别',
                      type:'pie',
                      radius:'70%',
-                     data:this.opinionData
+                     data:this.genderData
                    }
                  ]
                })
+            },
+            getGender(){
+                this.$axios
+                    .get(`/singer/detail/sex`)
+                    .then(response =>{
+                        // console.log(response.data.data);
+                        let data = response.data.data;
+                        
+                        for(let key in data ){
+                            var a = {value:data[key],name:key}
+                            this.genderData.push(a);
+                        }
+                        console.log(this.genderData);
+                        this.drawPie('echarts_box');
+                    })
+                    .catch(failResponse =>{
+                    })
             }
         },
     

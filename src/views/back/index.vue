@@ -22,6 +22,13 @@ export default {
     components:{
         SideBar,
         NavBar
+    },
+    created(){
+        if(!this.$cookies.isKey('isLogin')){
+            this.$router.push({
+                path:'/admin/login'
+            });
+        }
     }
 }
 
