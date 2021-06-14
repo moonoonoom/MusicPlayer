@@ -52,7 +52,12 @@
           path:'/space/main',
           icon:'el-icon-house'
         },
-        
+        {
+          name: "搜索",
+          order: "2",
+          path:'/space/search',
+          icon:'el-icon-search'
+        },
 
         ],
         activeIndex:''

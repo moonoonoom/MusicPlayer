@@ -3,10 +3,13 @@
             <el-table
             :data="songList"
             :show-header="false"
-            @row-click="playSong"
+            @row-click="sendSongUrl"
             style="width: 100%;background-color:#202020 !important;">
                 <el-table-column
                 prop="name">
+                </el-table-column>
+                <el-table-column
+                prop="duration">
                 </el-table-column>
             </el-table>
         </div>
@@ -21,9 +24,10 @@ export default {
         }
     },
     methods:{
-        playSong(row){
+        sendSongUrl(row){
             console.log(row);
-            this.$emit('sendSong',row.url);
+            // this.$emit('sendSongUrl',row.url);
+            this.bus.$emit('sendSongUrl',row);
         }
     }
 }

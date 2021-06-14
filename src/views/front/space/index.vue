@@ -3,11 +3,12 @@
     <div style="height:92%">
       <SideBar />
       
-      <Stage />
+      <Stage @sendSongUrl="getSongURl"  />
     </div>
     <div style="height:8%">
       <Player />
     </div>
+    <audio id="player" :src="songUrl" autoplay></audio>
   </div>
 </template>
 
@@ -21,6 +22,18 @@ export default{
     SideBar,
     Player,
     Stage
-  }
+  },
+  data(){
+    return{
+      songUrl:''
+    }
+  },
+  methods:{
+        getSongURl(url){
+            this.songUrl = url;
+            let audio = document.getElementById("player");
+            audio.play();
+        }
+    }
 }
 </script>

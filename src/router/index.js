@@ -11,6 +11,7 @@ import Artist from "@/views/front/components/artist"
 import AdminSongList from "@/views/back/song/list"
 import SingerAnalysis from "@/views/back/analysis/singer"
 import AdminLogin from "@/views/back/login"
+import SearchPage from "@/views/front/components/search"
 
 Vue.use(Router)
 
@@ -68,6 +69,11 @@ export default new Router({
           path: '/space/artist',
           name: 'Artist',
           component: Artist
+        },
+        {
+          path:'/space/search',
+          name: 'SearchPage',
+          component: SearchPage
         }
       ]
     }

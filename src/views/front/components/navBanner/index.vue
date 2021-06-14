@@ -1,7 +1,7 @@
 <template>
     <div class="navBanner">
-        <el-button @click="back()" :disabled="this.backDis" class="circleBtn" type="info" icon="el-icon-arrow-left" circle></el-button>
-        <el-button class="circleBtn" type="info" icon="el-icon-arrow-right" circle></el-button>
+        <el-button @click="back" :disabled="this.backDis" class="circleBtn" type="info" icon="el-icon-arrow-left" circle></el-button>
+        <el-button @click="go" class="circleBtn" type="info" icon="el-icon-arrow-right" circle></el-button>
     </div>
 </template>
 
@@ -19,6 +19,9 @@ export default {
     methods:{
         back(){
             this.$router.back();
+        },
+        go(){
+            this.$router.go();
         },
         setBackDis(){
             if(window.history.length <=1){

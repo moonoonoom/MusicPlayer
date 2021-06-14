@@ -45,7 +45,7 @@ export default{
             this.$axios
                 .get(`/songList/getRandomSongList/${num}`)
                 .then(response =>{
-                    // console.log(response);
+                    console.log(response);
                     this.firstSongLists = response.data.data;
                 })
                 .catch(failResponse =>{

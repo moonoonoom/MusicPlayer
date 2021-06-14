@@ -11,7 +11,7 @@ import VueCookies from 'vue-cookies'
 var axios = require('axios')
 axios.defaults.baseURL = 'http://localhost:8081'
 Vue.prototype.$axios = axios
-
+Vue.prototype.bus = new Vue();
 Vue.use(ElementUI);
 Vue.use(VueCookies);
 Vue.config.productionTip = false;

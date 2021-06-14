@@ -3,8 +3,8 @@
         <div class="navBanner">
             <NavBanner />
         </div>
-         <router-view @sendSong="playSong"></router-view>
-         <audio id="player" :src="songUrl" autoplay></audio>
+         <router-view v-on="$listeners" ></router-view>
+         
     </div>
 </template>
 
@@ -12,6 +12,7 @@
 import NavBanner from "../../components/navBanner"
 export default{
     name: 'Stage',
+    inheritAttrs: false,
     components:{
         NavBanner
     },
