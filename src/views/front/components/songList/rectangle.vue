@@ -1,7 +1,7 @@
 <template>
     <div class="rec">
         <div style="width:10%;height:80px;">
-            <img height="80px" width="80px" :src="this.picSrc">
+            <img class="img" height="80px" width="80px" :src="this.picSrc">
         </div>
 
         <div 
@@ -52,5 +52,9 @@ export default {
 .listname{
     color:white;
     font-weight: bold;
+}
+
+.img{
+    object-fit: cover;
 }
 </style>

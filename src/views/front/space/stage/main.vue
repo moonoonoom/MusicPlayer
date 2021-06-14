@@ -6,7 +6,7 @@
         </div>
 
         <div class="songList" :key="songList.id" v-for="songList in firstSongLists">
-            <SongListPenelLied :listName="songList.title" :picStc="songListPic(songList.pic)" />
+            <SongListRec :listName="songList.title" :picSrc="songListPic(songList.pic)" />
         </div>
 
         <div class="title">
@@ -19,13 +19,13 @@
 </template>
 
 <script>
-import SongListPenelLied from "../../components/songList/songListPanelLied"
+import SongListRec from "../../components/songList/rectangle"
 import ArtistPanel from "../../components/artist/artistPanel"
 
 export default{
     name:'Main',
     components:{
-        SongListPenelLied,
+        SongListRec,
         ArtistPanel
     },
     data(){
@@ -56,7 +56,7 @@ export default{
             this.$axios
                 .get(`/singer/getRandomSinger/${num}`)
                 .then(response =>{
-                    console.log(response);
+                    // console.log(response);
                     this.artistList = response.data.data;
                     // this.firstSongLists = response.data.data;
                 })
@@ -67,8 +67,11 @@ export default{
         songListPic(pic){
             if(pic==""){
                 return 'http://p2.music.126.net/lGKTPIR0dvEt09OMlzflxA==/93458488376709.jpg';
+            }else{
+                // console.log(pic);
+                return pic;
             }
-            return;
+           
         },
         getTime(){
             let date = new Date();

@@ -24,8 +24,8 @@ export default{
     methods:{
         playSong(url){
             this.songUrl = url;
-            // let audio = document.getElementById("player");
-            // audio.play();
+            let audio = document.getElementById("player");
+            audio.play();
         }
     }
 }

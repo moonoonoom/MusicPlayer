@@ -80,7 +80,7 @@ export default{
           this.$axios
             .get(`/song/allSong/${this.pageNo}/${this.pageSize}`)
             .then(response =>{
-              console.log(response);
+              // console.log(response);
               this.songData=response.data.data;
             })
             .catch(failResponse =>{
