@@ -88,12 +88,11 @@
           ],
         },
         {
-          path: "datamangeinfo",
           name: "数据分析",
           order: "4",
           children: [
             {
-              path: "datamangeinfo",
+              path: "/admin/analysis/singer",
               name: "歌手数据",
             },
           ],
