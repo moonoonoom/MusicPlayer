@@ -6,7 +6,9 @@
         </div>
 
         <div class="songList" :key="songList.id" v-for="songList in firstSongLists">
-            <SongListRec :listName="songList.title" :picSrc="songListPic(songList.pic)" />
+            <SongListRec :listName="songList.title" 
+                         :picSrc="songListPic(songList.pic)"
+                         :id="songList.id" />
         </div>
 
         <div class="title">
@@ -65,7 +67,7 @@ export default{
                 })
         },
         songListPic(pic){
-            if(pic==""){
+            if(pic==null){
                 return 'http://p2.music.126.net/lGKTPIR0dvEt09OMlzflxA==/93458488376709.jpg';
             }else{
                 // console.log(pic);

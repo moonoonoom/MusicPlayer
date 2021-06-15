@@ -12,6 +12,11 @@ import AdminSongList from "@/views/back/song/list"
 import SingerAnalysis from "@/views/back/analysis/singer"
 import AdminLogin from "@/views/back/login"
 import SearchPage from "@/views/front/components/search"
+import SongSongList from "@/views/back/songList/list"
+import AdminSongAdd from "@/views/back/song/add"
+import Song from "@/views/front/components/song"
+import SongListPage from "@/views/front/components/songlist/page"
+import Library from "@/views/front/components/library"
 
 Vue.use(Router)
 
@@ -36,6 +41,16 @@ export default new Router({
           path:'/admin/song/list',
           name: 'AdminSongList',
           component: AdminSongList
+        },
+        {
+          path:'/admin/song/add',
+          name: 'AdminSongAdd',
+          component: AdminSongAdd
+        },
+        {
+          path:'/admin/song/songlist',
+          name: 'SongSongList',
+          component: SongSongList
         },
         {
           path:'/admin/analysis/singer',
@@ -74,6 +89,21 @@ export default new Router({
           path:'/space/search',
           name: 'SearchPage',
           component: SearchPage
+        },
+        {
+          path:'/space/song',
+          name: 'Song',
+          component: Song
+        },
+        {
+          path:'/space/songlist/page',
+          name:'SongListPage',
+          component: SongListPage
+        },
+        {
+          path:'/space/library',
+          name: 'Library',
+          component: Library
         }
       ]
     }

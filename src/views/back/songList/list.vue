@@ -1,53 +1,51 @@
 <template>
-      <div style="height:100%">
+  <div style="height:100%">
     <div class="search">
       <el-input 
       v-model="searchInfo"  
       placeholder="请输入内容"
       style="width:150px"></el-input>
       <el-button type="primary" @click="search">搜索</el-button>
-              <el-button type="primary" @click="delALL">批量删除</el-button>
+          <el-button type="primary" @click="delALL">批量删除</el-button>
     </div>
     <div class="table">
         <el-table
-        :data="songData"
+        :data="singerData"
         style="width: 100%;"
         height="100%"
-        @selection-change="handleSelectionChange">
-         <el-table-column
+         @selection-change="handleSelectionChange">
+                  <el-table-column
       type="selection"
       width="55">
     </el-table-column>
         <el-table-column
-          prop="name"
-          label="歌曲名"
+          prop="title"
+          label="标题"
           width="120">
         </el-table-column>
         <el-table-column
-          prop="singerName"
-          label="歌手名"
+          prop="pic"
+          label="封面"
           width="120">
-        </el-table-column>
-        <el-table-column
-          prop="playCount"
-          label="播放次数"
-          width="120">
+        <template slot-scope="{row}"><img :src="row.pic" width="60px" height="60px" /></template>
         </el-table-column>
         <el-table-column
           prop="introduction"
           label="简介"
-          width="300">
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop="style"
+          label="风格"
+          width="150">
         </el-table-column>
         <el-table-column
           prop="createTime"
           label="创建时间"
-          width="150">
+          width="180">
         </el-table-column>
         <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button
-            size="mini"
-            @click="handleEdit(scope.row)">编辑</el-button>
           <el-button
             size="mini"
             type="danger"
@@ -60,18 +58,18 @@
         :total="1000">
       </el-pagination>
     </div>
-
   </div>
 </template>
 
+
+
 <script>
 import { MessageBox, Message } from "element-ui"; 
-export default{
-    name:"AdminSongList",
-    data() {
+export default {
+    name: "ArtistList",
+     data() {
       return {
         singerData:[],
-        songData:[],
         pageNo:1,   
         pageSize:10,
         searchInfo:'',
@@ -85,18 +83,18 @@ export default{
     methods:{
       
       getList(){
-          this.$axios
-            .get(`/song/allSong/${this.pageNo}/${this.pageSize}`)
+        this.$axios
+            .get(`/songList/allSongList/${this.pageNo}/${this.pageSize}`)
             .then(response =>{
-              console.log(response);
-              this.songData=response.data.data;
+              // console.log(response);
+              this.singerData=response.data.data;
             })
             .catch(failResponse =>{
             })
       },
       search(){
         this.$axios
-            .get(`/singer/detail-name/${this.searchInfo}/${this.pageNo}/${this.pageSize}`)
+            .get(`/songList/style/detail/${this.searchInfo}/${this.pageNo}/${this.pageSize}`)
             .then(response =>{
               console.log(response);
               this.singerData=response.data.data;
@@ -105,9 +103,8 @@ export default{
             })
       },
       handleDelete(row){
-        console.log(row);
         this.$axios
-            .get(`/song/delete/${row.id}`)
+            .get(`/songList/delete/${row.id}`)
             .then(response =>{
               // console.log(response);
               if(response.data.msg=="删除成功"){
@@ -123,15 +120,15 @@ export default{
       },
       handleEdit(row){
         this.$router.push({
-                path:'/admin/song/add',
+                path:'/admin/artist/add',
                 query:{
                     id:row.id
                 }
             });
       },
       delALL(){
-        this.$axios
-            .post(`/song/deletes`,this.multipleSelection)
+           this.$axios
+            .post(`/songList/deletes`,this.multipleSelection)
             .then(response =>{
               // console.log(response);
               if(response.data.msg=="删除成功"){
@@ -154,7 +151,6 @@ export default{
     }
 }
 </script>
-
 
 <style scoped>
 .search{

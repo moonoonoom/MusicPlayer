@@ -21,7 +21,7 @@ export default {
             this.$router.back();
         },
         go(){
-            this.$router.go();
+            this.$router.go(-1);
         },
         setBackDis(){
             if(window.history.length <=1){

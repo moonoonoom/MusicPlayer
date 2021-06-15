@@ -8,7 +8,7 @@
     <div style="height:8%">
       <Player />
     </div>
-    <audio id="player" :src="songUrl" autoplay></audio>
+    
   </div>
 </template>
 

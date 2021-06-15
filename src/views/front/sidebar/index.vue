@@ -58,7 +58,12 @@
           path:'/space/search',
           icon:'el-icon-search'
         },
-
+        {
+          name:"音乐库",
+          order:"3",
+          path:"/space/library",
+          icon:'el-icon-suitcase'
+        }
         ],
         activeIndex:''
         };

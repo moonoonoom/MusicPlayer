@@ -39,9 +39,9 @@
         console.log(key, keyPath);
       },
       getIsLogin(){
-        if(this.$cookies.isKey('isLogin')){
+        if(this.$cookies.isKey('username')){
             this.isLogin = true;
-            this.username = this.$cookies.get('isLogin');
+            this.username = this.$cookies.get('username');
         }else{
           this.isLogin = false;
         }

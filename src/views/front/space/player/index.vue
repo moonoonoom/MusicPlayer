@@ -1,7 +1,7 @@
 <template>
     <div class="player">
         <div class="pic">
-            <img class="img" height="50px" width="50px"  :src="this.picSrc">
+            <img class="img" @click="goToSong" height="50px" width="50px"  :src="this.picSrc">
         </div>
         <div class="name">
             {{this.name}}
@@ -26,7 +26,8 @@ export default {
             songUrl:'',
             isPlaying:false,
             picSrc:'http://p2.music.126.net/lGKTPIR0dvEt09OMlzflxA==/93458488376709.jpg',
-            name:''
+            name:'',
+            songId:''
         }
     },
     mounted(){
@@ -36,6 +37,7 @@ export default {
             this.songUrl = msg.url;
             this.picSrc = msg.pic;
             this.name = msg.name;
+            this.songId = msg.id;
         })
     },
     methods:{
@@ -55,6 +57,15 @@ export default {
             }else{
                 this.play();
             }
+        },
+        goToSong(){
+            console.log("yes");
+              this.$router.push({
+                path:'/space/song',
+                query:{
+                    id:this.songId
+                }
+            });
         }
     }
 }
@@ -72,6 +83,7 @@ export default {
 
 .pic .img{
     object-fit: cover;
+    cursor : pointer;
 }
 
 .name{

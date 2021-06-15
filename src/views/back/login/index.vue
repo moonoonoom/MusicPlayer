@@ -33,10 +33,13 @@ export default{
                 .post(`/user/login?password=${this.form.password}&username=${this.form.name}`)
                 .then(response =>{
                     
-                    let data = response.data;
-                    console.log(data);
-                    if(data.msg=='login success'){
-                        this.$cookies.set('isLogin',this.form.name);
+                    
+                    if(response.data.msg=='请求成功'){
+                        let data = response.data.data;
+                        console.log(data);
+                        // this.$cookies.set('isLogin',this.form.name);
+                        this.$cookies.set('username',data.nikename);
+                        this.$cookies.set('userId',data.id);
                         this.$router.push({
                             path:'/admin'
                         });

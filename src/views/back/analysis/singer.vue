@@ -48,7 +48,7 @@ export default{
                         // console.log(response.data.data);
                         let data = response.data.data;
                         
-                        for(let key in data ){
+                        for(let key in data){
                             var a = {value:data[key],name:key}
                             this.genderData.push(a);
                         }

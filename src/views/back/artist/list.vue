@@ -6,12 +6,18 @@
       placeholder="请输入内容"
       style="width:150px"></el-input>
       <el-button type="primary" @click="search">搜索</el-button>
+          <el-button type="primary" @click="delALL">批量删除</el-button>
     </div>
     <div class="table">
         <el-table
         :data="singerData"
         style="width: 100%;"
-        height="100%">
+        height="100%"
+         @selection-change="handleSelectionChange">
+                  <el-table-column
+      type="selection"
+      width="55">
+    </el-table-column>
         <el-table-column
           prop="name"
           label="姓名"
@@ -36,6 +42,7 @@
         <el-table-column
           prop="introduction"
           label="简介"
+          :show-overflow-tooltip="true"
           width="300">
         </el-table-column>
         <el-table-column
@@ -56,6 +63,7 @@
       </el-table-column>
       </el-table>
       <el-pagination
+        @current-change="handleCurrentChange" 
         layout="prev, pager, next"
         :total="1000">
       </el-pagination>
@@ -74,7 +82,8 @@ export default {
         singerData:[],
         pageNo:1,   
         pageSize:10,
-        searchInfo:''
+        searchInfo:'',
+        multipleSelection:[]
       }
     },
     created(){
@@ -104,7 +113,6 @@ export default {
             })
       },
       handleDelete(row){
-        console.log(row);
         this.$axios
             .get(`/singer/delete/${row.id}`)
             .then(response =>{
@@ -124,9 +132,35 @@ export default {
         this.$router.push({
                 path:'/admin/artist/add',
                 query:{
-                    id:row.singerId
+                    id:row.id
                 }
             });
+      },
+      delALL(){
+           this.$axios
+            .post(`/singer/deletes`,this.multipleSelection)
+            .then(response =>{
+              // console.log(response);
+              if(response.data.msg=="删除成功"){
+                this.getList();
+                Message.success("删除成功");
+              }else{
+                Message.error("删除失败");
+              }
+            })
+            .catch(failResponse =>{
+              Message.error("删除失败");
+            })
+      },
+      handleSelectionChange(val){
+        for(var key in val) {
+            this.multipleSelection.push(val[key].id);
+        }
+        console.log(this.multipleSelection);
+      },
+      handleCurrentChange(val){
+        this.pageNo = val;
+        this.getList();
       }
     }
 }

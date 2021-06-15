@@ -70,6 +70,10 @@
           name: "歌曲管理",
           order: "2",
           children: [
+           {
+              path: "/admin/song/add",
+              name: "添加歌曲",
+            },
             {
               path: "/admin/song/list",
               name: "歌曲列表",
@@ -77,19 +81,29 @@
           ],
         },
         {
-          path: "orderinfomange",
-          name: "用户管理",
+          name: "歌单管理",
           order: "3",
           children: [
-            {
-              path: "orderinfomange",
-              name: "订单信息",
-            },
+           {
+              path: "/admin/song/songlist",
+              name: "歌单列表",
+            }
           ],
         },
+        // {
+        //   path: "orderinfomange",
+        //   name: "用户管理",
+        //   order: "4",
+        //   children: [
+        //     {
+        //       path: "orderinfomange",
+        //       name: "订单信息",
+        //     },
+        //   ],
+        // },
         {
           name: "数据分析",
-          order: "4",
+          order: "5",
           children: [
             {
               path: "/admin/analysis/singer",

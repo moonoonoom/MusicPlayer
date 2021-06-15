@@ -30,7 +30,7 @@
             };
         },
         mounted(){
-            this.username = this.$cookies.get('isLogin');
+            this.username = this.$cookies.get('username');
         },
         methods: {
             handleSelect(key, keyPath) {
@@ -42,7 +42,7 @@
                     .get(`/user/logout`)
                     .then(response =>{
                         console.log(response);
-                        this.$cookies.remove('isLogin');
+                        this.$cookies.remove('username');
                         this.$router.push({
                             path:'/admin/login'
                         });

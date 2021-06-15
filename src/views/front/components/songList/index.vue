@@ -5,11 +5,11 @@
             :show-header="false"
             @row-click="sendSongUrl"
             style="width: 100%;background-color:#202020 !important;">
-                <el-table-column
-                prop="name">
+                <el-table-column prop="name">
                 </el-table-column>
-                <el-table-column
-                prop="duration">
+                <el-table-column prop="albumName">
+                </el-table-column>
+                <el-table-column prop="duration">
                 </el-table-column>
             </el-table>
         </div>

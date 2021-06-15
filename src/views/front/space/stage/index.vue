@@ -46,7 +46,7 @@ export default{
 .navBanner{
     position:absolute;
     height:40px;
-    width:100%;
+    width:130px;
     z-index: 999;
 }
 
