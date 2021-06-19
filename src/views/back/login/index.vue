@@ -1,16 +1,18 @@
 <template>
-    <div>
-        <el-form ref="form" :model="form" label-width="80px" style="text-align:left">
-            <el-form-item style="width:250px" label="用户名">
-                <el-input v-model="form.name" placeholder="请输入用户名"></el-input>
-            </el-form-item>
-            <el-form-item style="width:250px" label="密码">
-                <el-input v-model="form.password" placeholder="请输入密码" show-password></el-input>
-            </el-form-item>
-            <el-form-item>
-                <el-button type="primary" @click="login">登录</el-button>
-            </el-form-item>
-        </el-form>
+    <div class="background">
+        <div class="loginForm">
+            <el-form ref="form" :model="form" label-width="80px" >
+                <el-form-item  label="用户名">
+                    <el-input v-model="form.name" placeholder="请输入用户名"></el-input>
+                </el-form-item>
+                <el-form-item  label="密码">
+                    <el-input v-model="form.password" placeholder="请输入密码" show-password></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="login">登录</el-button>
+                </el-form-item>
+            </el-form>
+        </div>
     </div>
 </template>
 
@@ -38,8 +40,11 @@ export default{
                         let data = response.data.data;
                         console.log(data);
                         // this.$cookies.set('isLogin',this.form.name);
-                        this.$cookies.set('username',data.nikename);
-                        this.$cookies.set('userId',data.id);
+                        // this.$cookies.set('username',data.nikename);
+                        // this.$cookies.set('userId',data.id);
+                        sessionStorage.setItem('username',data.user.nikename);
+                        sessionStorage.setItem('userId',data.user.id);
+                        sessionStorage.setItem('token',data.token);
                         this.$router.push({
                             path:'/admin'
                         });
@@ -55,3 +60,18 @@ export default{
    }
 }
 </script>
+
+<style scoped>
+.loginForm{
+    height: 100%;
+    width: 250px;
+    margin-left: 39vw;
+    padding-top: 200px;
+}
+
+.background{
+    background: -webkit-linear-gradient(bottom,black,		#33CCFF ) no-repeat;
+}
+
+
+</style>

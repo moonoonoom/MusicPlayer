@@ -62,7 +62,7 @@ export default {
       })
     },
     songListPic(pic){
-        if(pic==""){
+        if(pic==null){
             return 'http://p2.music.126.net/lGKTPIR0dvEt09OMlzflxA==/93458488376709.jpg';
         }else{
             // console.log(pic);

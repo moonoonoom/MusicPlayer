@@ -9,9 +9,17 @@
                 <span>{{this.name}}</span>
             </div>
         </div>
-        <div class="songList">
+        <div class="songList" @openDialog="openDialog">
             <SongList :songList="this.songList"/>
         </div>
+
+        <el-dialog title="请选择歌单" :visible.sync="dialogTableVisible">
+            <el-table :show-header="false" >
+                <el-table-column property="date" label="日期" width="150"></el-table-column>
+                <el-table-column property="name" label="歌单名字" width="200"></el-table-column>
+                <el-table-column property="address" label="地址"></el-table-column>
+            </el-table>
+        </el-dialog>
     </div>
 </template>
 
@@ -29,7 +37,8 @@ import SongList from '../../songList'
                 pageNo:1,   
                 pageSize:10,
                 name:'',
-                picSrc:''
+                picSrc:'',
+                dialogTableVisible:false
             }
         },
         mounted(){
@@ -53,6 +62,10 @@ import SongList from '../../songList'
                     })
                     .catch(failResponse =>{
                     })
+            },
+            openDialog(){
+                console.log('received');
+                this.dialogTableVisible = true;
             }
         }
     }
@@ -65,6 +78,7 @@ import SongList from '../../songList'
     background:#202020;
 
     height:100%;
+    overflow-y:auto;
 }
 
 .navBanner{

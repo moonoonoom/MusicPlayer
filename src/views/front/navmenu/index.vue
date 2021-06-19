@@ -39,9 +39,9 @@
         console.log(key, keyPath);
       },
       getIsLogin(){
-        if(this.$cookies.isKey('username')){
+        if(this.username = sessionStorage.getItem('username')){
             this.isLogin = true;
-            this.username = this.$cookies.get('username');
+            // this.username = this.$cookies.get('username');
         }else{
           this.isLogin = false;
         }

@@ -108,7 +108,7 @@ import { MessageBox, Message } from "element-ui";
         this.$axios
             .post('/singer/update',{
                 name:this.form.name,
-                singerId:this.singerId
+                id:this.id
             })
             .then(response =>{
 

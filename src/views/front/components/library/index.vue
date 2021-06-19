@@ -46,7 +46,7 @@ import { MessageBox, Message } from "element-ui";
             }
         },
         mounted(){
-            this.userId = this.$cookies.get('userId');
+            this.userId = sessionStorage.getItem('userId');
             console.log(this.userId);
             this.getSongList();
         },

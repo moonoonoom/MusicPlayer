@@ -7,6 +7,8 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import './theme/theme2/index.css'
 import VueCookies from 'vue-cookies'
+import http from "./utils/http";
+Vue.prototype.$http = Vue.$http = http;
 
 var axios = require('axios')
 axios.defaults.baseURL = 'http://localhost:8081'

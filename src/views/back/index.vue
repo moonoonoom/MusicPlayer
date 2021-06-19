@@ -24,7 +24,7 @@ export default {
         NavBar
     },
     created(){
-        if(!this.$cookies.isKey('username')){
+        if(!sessionStorage.getItem('username')){
             this.$router.push({
                 path:'/admin/login'
             });
