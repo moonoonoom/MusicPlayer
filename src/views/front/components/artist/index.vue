@@ -39,6 +39,7 @@
 
 <script>
 import SongList from '../../components/songList'
+import { MessageBox, Message } from "element-ui";
     export default{
         name:'Artist',
         inheritAttrs: false,
@@ -53,7 +54,6 @@ import SongList from '../../components/songList'
                 songList:[],
                 pageNo:1,
                 pageSize:10,
-                addToListVisible:false,
                 userSongList:[],
                 songName:'',
                 songListName:'',
@@ -91,6 +91,7 @@ import SongList from '../../components/songList'
                     .then(response =>{
                         console.log(response);
                         this.songList=response.data.data.songs;
+                        
                     })
                     .catch(failResponse =>{
                     })
@@ -122,12 +123,17 @@ import SongList from '../../components/songList'
             },
             addSongToList(){
                 this.$axios
-                    .post('/listsong/add',{
+                    .post('/listSong/add',{
                         songId:this.song.id,
                         songListId:this.songListObj.id
                     })
                     .then(response =>{
                         console.log(response);
+                        if(response.data.msg=="添加成功"){
+                            this.addConformVisible=false;
+                            this.addToListVisible=false;
+                            Message.success("添加成功");
+                        }
                     })
                     .catch(failResponse =>{
                     })

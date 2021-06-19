@@ -17,6 +17,7 @@ import AdminSongAdd from "@/views/back/song/add"
 import Song from "@/views/front/components/song"
 import SongListPage from "@/views/front/components/songlist/page"
 import Library from "@/views/front/components/library"
+import UserLogin from "@/views/front/login"
 
 Vue.use(Router)
 
@@ -63,6 +64,11 @@ export default new Router({
       path:'/admin/login',
       name:'AdminLogin',
       component: AdminLogin
+    },
+    {
+      path:'/login',
+      name:'UserLogin',
+      component: UserLogin
     },
     {
       path: '/',
