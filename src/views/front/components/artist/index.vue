@@ -123,7 +123,7 @@ import SongList from '../../components/songList'
             addSongToList(){
                 this.$axios
                     .post('/listsong/add',{
-                        songId:this.song.songId,
+                        songId:this.song.id,
                         songListId:this.songListObj.id
                     })
                     .then(response =>{
