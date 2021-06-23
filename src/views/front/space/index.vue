@@ -1,11 +1,11 @@
 <template>
   <div style="height:1400px">
-    <div style="height:92%">
+    <div style="height:91%">
       <SideBar />
       
       <Stage @sendSongUrl="getSongURl"  />
     </div>
-    <div style="height:8%">
+    <div style="height:9%">
       <Player />
     </div>
     

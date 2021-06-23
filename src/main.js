@@ -8,6 +8,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './theme/theme2/index.css'
 import VueCookies from 'vue-cookies'
 import http from "./utils/http";
+// import aplayer from 'vue-aplayer'
 Vue.prototype.$http = Vue.$http = http;
 
 var axios = require('axios')

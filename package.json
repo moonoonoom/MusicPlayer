@@ -14,8 +14,11 @@
     "axios": "^0.21.1",
     "echarts": "^4.9.0",
     "element-ui": "^2.15.1",
+    "hls.js": "^1.0.7",
     "path": "^0.12.7",
+    "save": "^2.4.0",
     "vue": "^2.5.2",
+    "vue-aplayer": "^1.6.1",
     "vue-cookies": "^1.7.4",
     "vue-router": "^3.0.1"
   },

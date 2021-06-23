@@ -13,6 +13,9 @@ export default {
 
 
 <style>
+body{
+  margin:0;
+}
 
 html,body,#app{
   height: 100%;
