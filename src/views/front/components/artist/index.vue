@@ -7,14 +7,17 @@
             <div class="artistName">
                 <span>{{this.name}}</span>
             </div>
+            <div class="playAll" @click="playSongList">
+                <i class="el-icon-video-play"/>
+            </div>
         </div>
         <div class="songList" >
-            <SongList   @openDialog="openDialog"
-                        :songList="this.songList"
-                         v-on="$listeners" />
+            <SongList  
+                :songList="this.songList"
+                v-on="$listeners" />
         </div>
 
-         <el-dialog class="userSongList" title="请选择歌单" :visible.sync="addToListVisible">
+         <!-- <el-dialog class="userSongList" title="请选择歌单" :visible.sync="addToListVisible">
              <el-dialog
                 width="30%"
                 :visible.sync="addConformVisible"
@@ -31,7 +34,7 @@
             style="width: 100%;background-color:#202020 !important;">
                 <el-table-column property="title" label="歌单名字" ></el-table-column>
             </el-table>
-        </el-dialog>
+        </el-dialog> -->
 
        
     </div>
@@ -66,7 +69,7 @@ import { MessageBox, Message } from "element-ui";
             console.log('artist')
             this.getArtistInfo();
             this.getSongList();
-            this.getUserSongList();
+            // this.getUserSongList();
             console.log(sessionStorage.getItem('username'));
         },
         methods:{
@@ -96,47 +99,51 @@ import { MessageBox, Message } from "element-ui";
                     .catch(failResponse =>{
                     })
             },
-            openDialog(song){
-                // console.log('received');
-                this.addToListVisible = true;
-                console.log(song);
-                this.songName = song.name;
-                this.song = song;
-            },
-            getUserSongList(){ //获得用户的歌单
-                const userId = sessionStorage.getItem('userId');
-                this.$axios
-                    .get(`/songList/detail-userId/${userId}`)
-                    .then(response =>{
-                        console.log("getUserSongList")
-                        console.log(response);
-                        this.userSongList=response.data.data;
-                    })
-                    .catch(failResponse =>{
-                    })
-            },
-            confrom(row){
-                this.addConformVisible=true;
-                console.log(row);
-                this.songListObj = row;
-                this.songListName=row.title;
-            },
-            addSongToList(){
-                this.$axios
-                    .post('/listSong/add',{
-                        songId:this.song.id,
-                        songListId:this.songListObj.id
-                    })
-                    .then(response =>{
-                        console.log(response);
-                        if(response.data.msg=="添加成功"){
-                            this.addConformVisible=false;
-                            this.addToListVisible=false;
-                            Message.success("添加成功");
-                        }
-                    })
-                    .catch(failResponse =>{
-                    })
+            // openDialog(song){
+            //     // console.log('received');
+            //     this.addToListVisible = true;
+            //     console.log(song);
+            //     this.songName = song.name;
+            //     this.song = song;
+            // },
+            // getUserSongList(){ //获得用户的歌单
+            //     const userId = sessionStorage.getItem('userId');
+            //     this.$axios
+            //         .get(`/songList/detail-userId/${userId}`)
+            //         .then(response =>{
+            //             console.log("getUserSongList")
+            //             console.log(response);
+            //             this.userSongList=response.data.data;
+            //         })
+            //         .catch(failResponse =>{
+            //         })
+            // },
+            // confrom(row){
+            //     this.addConformVisible=true;
+            //     console.log(row);
+            //     this.songListObj = row;
+            //     this.songListName=row.title;
+            // },
+            // addSongToList(){
+            //     this.$axios
+            //         .post('/listSong/add',{
+            //             songId:this.song.id,
+            //             songListId:this.songListObj.id
+            //         })
+            //         .then(response =>{
+            //             console.log(response);
+            //             if(response.data.msg=="添加成功"){
+            //                 this.addConformVisible=false;
+            //                 this.addToListVisible=false;
+            //                 Message.success("添加成功");
+            //             }
+            //         })
+            //         .catch(failResponse =>{
+            //         })
+            // },
+            playSongList(){
+                console.log("传出歌单");
+                this.bus.$emit('sendSongList',this.songList);
             }
 
         }
@@ -163,11 +170,24 @@ import { MessageBox, Message } from "element-ui";
     padding-left: 20px;
 }
 
+.playAll{
+    font-size:80px;
+    color:gray;
+    position: absolute;
+    top:200px;
+    right:30px;
+    cursor: pointer;
+}
+
+.playAll:hover{
+    color:white;
+}
+
 /* .userSongList{
     background:#202020;
 } */
 
-.userSongList .el-table {
+/* .userSongList .el-table {
     color:white;
     
 }
@@ -185,5 +205,5 @@ import { MessageBox, Message } from "element-ui";
 
 .userSongList .el-table--enable-row-hover .el-table__body tr:hover>td{
     background-color: #212e3e !important;
-}
+} */
 </style>

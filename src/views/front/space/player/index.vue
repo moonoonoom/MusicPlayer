@@ -17,10 +17,10 @@
             <el-col :span="12">
                  <aplayer
                     style="background-color: #181818;margin:0;"
-                    autoplay 
                     :music="this.music"
-                    :list="this.list"
-                    listFolded="true"
+                    :list="list"
+                    :listFolded="true"
+
                     >
                 </aplayer>
             </el-col>
@@ -30,7 +30,6 @@
                 </div> -->
                 <div class="iconBtn">
                 <el-popover
-
                     placement="right"
                     width="400"
                     trigger="click">
@@ -45,6 +44,7 @@
                     <!-- </div> -->
                     <!-- <el-button slot="reference">click 激活</el-button> -->
                 </el-popover>
+                <i @click="goToSong" class="el-icon-more"/>
                 </div>
             </el-col>
         </el-row>
@@ -65,34 +65,18 @@ export default {
         return{
             songUrl:'',
             isPlaying:false,
-            picSrc:'http://p2.music.126.net/lGKTPIR0dvEt09OMlzflxA==/93458488376709.jpg',
+            picSrc:'',
             name:'',
             songId:'',
             music:{
                 title: '',
                 artist: '',
-                src: 'http://music.163.com/song/media/outer/url?id=574925509',
+                src: '',
                 pic: '',
                 lrc: ''
             },
             list:[],
-             gridData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }]
+            isShuffule:true
         }
     },
     mounted(){
@@ -113,6 +97,11 @@ export default {
             this.songId = msg.id;
             console.log("music");
             console.log(this.music);
+        });
+        
+        this.bus.$on('sendSongList',msg=>{
+            console.log('接收歌单成功');
+            console.log(msg);
         })
     },
     methods:{
@@ -172,11 +161,17 @@ export default {
     text-align:center;
     position: relative;
     height: 100%;
+    cursor: pointer;
 }
 
 .iconBtn .el-icon-tickets{
     position: absolute;
     bottom:0;
     left:0;
+}
+.iconBtn .el-icon-more{
+    position: absolute;
+    bottom:0;
+    left:26px;
 }
 </style>

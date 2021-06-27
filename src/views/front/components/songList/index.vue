@@ -17,11 +17,23 @@
                 </template>
             </el-table-column>
         </el-table>
-        <el-dialog title="请选择歌单" :visible.sync="dialogTableVisible">
-            <el-table :show-header="false" >
-                <el-table-column property="date" label="日期" width="150"></el-table-column>
-                <el-table-column property="name" label="歌单名字" width="200"></el-table-column>
-                <el-table-column property="address" label="地址"></el-table-column>
+        
+         <el-dialog class="songList" title="请选择歌单" :visible.sync="addToListVisible">
+             <el-dialog
+                width="30%"
+                :visible.sync="addConformVisible"
+                append-to-body>
+                <div>是否将《{{this.song.name}}》加入到歌单“{{this.songListObj.title}}”中</div>
+                <div>
+                    <el-button @click="addConformVisible = false">取 消</el-button>
+                    <el-button type="primary" @click="addSongToList">确 定</el-button>
+                </div>
+            </el-dialog>
+            <el-table 
+            :data="userSongList" :show-header="false" 
+            @row-click="confrom"
+            style="width: 100%;background-color:#202020 !important;">
+                <el-table-column property="title" label="歌单名字" ></el-table-column>
             </el-table>
         </el-dialog>
     </div>
@@ -37,8 +49,17 @@ export default {
     },
     data(){
         return {
-            dialogTableVisible:false
+            addToListVisible:false,
+            userSongList:[],
+            addConformVisible:false,
+            song:Object,
+            songListObj:Object,
+            songName:'',
+            songListName:'',
         }
+    },
+    mounted(){
+        this.getUserSongList();
     },
     methods:{
         sendSongUrl(row){
@@ -47,19 +68,59 @@ export default {
             this.bus.$emit('sendSongUrl',row);
         },
         addToList(row){
-            // this.dialogTableVisible=true;
+            this.addToListVisible=true;
             console.log('send');
-            this.$emit('openDialog',row);
-        }
-        
+            this.songName = row.name;
+            this.song = row;
+            // this.$emit('openDialog',row);
+        },
+        getUserSongList(){ //获得用户的歌单
+                const userId = sessionStorage.getItem('userId');
+                this.$axios
+                    .get(`/songList/detail-userId/${userId}`)
+                    .then(response =>{
+                        // console.log("getUserSongList")
+                        // console.log(response);
+                        this.userSongList=response.data.data;
+                    })
+                    .catch(failResponse =>{
+                    })
+            },
+        confrom(row){
+                this.addConformVisible=true;
+                console.log(row);
+                this.songListObj = row;
+                this.songListName=row.title;
+            },
+        addSongToList(){
+            this.$axios
+                .post('/listSong/add',{
+                    songId:this.song.id,
+                    songListId:this.songListObj.id
+                })
+                .then(response =>{
+                    console.log(response);
+                    if(response.data.msg=="添加成功"){
+                        this.addConformVisible=false;
+                        this.addToListVisible=false;
+                        Message.success("添加成功");
+                    }else if(response.data.msg=="该歌曲已在歌单中"){
+                        this.addConformVisible=false;
+                      
+                        Message.error("该歌曲已在歌单中");
+                    }
+                })
+                .catch(failResponse =>{
+                })
+        },
     }
 }
 </script>
 
 <style>
-.songList{
+/* .songList{
     background:#202020;
-}
+} */
 
 .songList .el-table {
     color:white;

@@ -18,7 +18,7 @@
           style="height:100%; width:100%;border:0;"
           >
           <div style="margin-top:20px;margin-bottom:10px">
-            <span class="title">SpermWhale</span>
+            <span class="title">Fin Whale</span>
         </div>
           <el-menu-item
               class="menuItem"
