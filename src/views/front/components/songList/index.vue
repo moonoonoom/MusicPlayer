@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import { MessageBox, Message } from "element-ui"; 
 export default {
     name:'SongList',
     props:{

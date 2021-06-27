@@ -90,6 +90,16 @@
             }
           ],
         },
+        {
+          name: "工单管理",
+          order: "4",
+          children: [
+           {
+              path: "/admin/workorder/list",
+              name: "工单列表",
+            }
+          ],
+        },
         // {
         //   path: "orderinfomange",
         //   name: "用户管理",

@@ -18,7 +18,7 @@ import Song from "@/views/front/components/song"
 import SongListPage from "@/views/front/components/songlist/page"
 import Library from "@/views/front/components/library"
 import UserLogin from "@/views/front/login"
-
+import WorkOrderList from "@/views/back/workorder/list"
 Vue.use(Router)
 
 export default new Router({
@@ -52,6 +52,11 @@ export default new Router({
           path:'/admin/song/songlist',
           name: 'SongSongList',
           component: SongSongList
+        },
+        {
+          path:'/admin/workorder/list',
+          name: 'WorkOrderList',
+          component: WorkOrderList
         },
         {
           path:'/admin/analysis/singer',

@@ -16,12 +16,12 @@
             </div>
         </div>
         <div class="lrcShow">
-            <div class="text">{{this.song.lyric}}</div>
+            <div class="text">{{this.lrcShow}}</div>
         </div>
 
         <el-dialog class="commitLrc" title="歌词勘误" :visible.sync="comLrcVisible">
             <el-input 
-                v-model="this.song.lyric" 
+                v-model="modiLrc" 
                 type="textarea"
                 :autosize="{ minRows: 2, maxRows: 20}"
                 />
@@ -34,13 +34,16 @@
 </template>
 
 <script>
+import { MessageBox, Message } from "element-ui"; 
     export default{
         name: 'Song',
         data(){
             return{
                 songId:'',
                 song:[],
-                comLrcVisible:false
+                comLrcVisible:false,
+                modiLrc:'',
+                lrcShow:''
             }
         },
         mounted(){
@@ -56,8 +59,9 @@
                         // console.log(response);
                         this.song=response.data.data;
                         //这里先这样显示，之后要改
-                        this.song.lyric = this.song.lyric.replace(/\[.*\]/g, "");
+                        this.lrcShow = this.song.lyric.replace(/\[.*\]/g, "");
                         console.log(this.song);
+                        this.modiLrc=this.song.lyric;
                         })
                     .catch(failResponse =>{
                     })
@@ -66,7 +70,26 @@
                 this.comLrcVisible = true;
             },
             commitNewLrc(){
-
+                const userId = sessionStorage.getItem('userId');
+                this.$axios
+                    .post('/workOrder/add',{
+                        lyric:this.modiLrc,
+                        songId:this.song.id,
+                        status:0,
+                        userId:userId
+                    })
+                    .then(response =>{
+                    console.log(response);
+                    if(response.data.msg=="添加成功"){
+                        this.comLrcVisible=false;
+                        Message.success("添加成功");
+                    }else{
+                        Message.error("添加失败");
+                    }
+                    })
+                    .catch(failResponse =>{
+                    Message.error("添加失败");
+                    })
             }
         }
     }
