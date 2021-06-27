@@ -13,7 +13,7 @@
             </el-table-column>
             <el-table-column >
                 <template slot-scope="scope"  >
-                    <i class="addIcon el-icon-plus" @click.stop="addToList(scope.row)"> </i>
+                    <i v-if="isLogin" class="addIcon el-icon-plus" @click.stop="addToList(scope.row)"> </i>
                 </template>
             </el-table-column>
         </el-table>
@@ -56,12 +56,22 @@ export default {
             songListObj:Object,
             songName:'',
             songListName:'',
+            isLogin:false,
         }
     },
     mounted(){
+        this.getIsLogin();
         this.getUserSongList();
     },
     methods:{
+        getIsLogin(){
+        if(sessionStorage.getItem('username')){
+            this.isLogin = true;
+            // this.username = this.$cookies.get('username');
+        }else{
+          this.isLogin = false;
+        }
+      },
         sendSongUrl(row){
             console.log(row);
             // this.$emit('sendSongUrl',row.url);
